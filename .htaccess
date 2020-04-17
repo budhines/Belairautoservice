@@ -1,0 +1,12 @@
+# Enable rewrite rules
+RewriteEngine On
+
+
+## Redirect HTTP to HTTPS with www
+
+# Only trigger rule if a non-ssl port is being used
+RewriteCond %{SERVER_PORT} !443
+# Extract non-www portion of HTTP_HOST
+RewriteCond %{HTTP_HOST} ^(www\.)?(.*) [NC]
+# Redirect to HTTPS with www
+RewriteRule (.*) https://www.%2/$1 [R=301]
